@@ -1,0 +1,8 @@
+com\xiaos\cloud\api\controller\testController.class
+com\xiaos\cloud\api\modules\remarks\controller\RemarksController.class
+com\xiaos\cloud\api\modules\classroom\controller\ClassroomController.class
+com\xiaos\cloud\api\modules\remarks\utils\ShellQuestionUtil.class
+com\xiaos\cloud\api\ApiRun.class
+com\xiaos\cloud\api\config\SwaggerConfig.class
+com\xiaos\cloud\api\modules\questions\controller\QuestionController.class
+com\xiaos\cloud\api\modules\student\controller\StudentController.class

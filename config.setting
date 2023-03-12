@@ -1,0 +1,5 @@
+//与jar同目录
+
+//1.Shell题批阅地址
+QUESTION_SHELL_POST_PATH = 192.168.200.154:30881
+

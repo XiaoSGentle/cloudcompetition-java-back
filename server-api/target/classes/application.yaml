@@ -1,0 +1,27 @@
+server:
+  port: 1000
+
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    username: root
+    password: root
+#    url: jdbc:mysql://49.234.23.23:3306/fast_api?serverTimezone=PRC
+    url: jdbc:mysql://localhost:3306/cloud_competition?serverTimezone=PRC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# mybatis-plus日志控制台输出
+mybatis-plus:
+  mapper-locations: classpath:**/mapper/xml*/*.xml*
+  global-config:
+    banner: false
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
