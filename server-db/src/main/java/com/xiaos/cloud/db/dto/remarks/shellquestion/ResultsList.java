@@ -8,7 +8,6 @@ package com.xiaos.cloud.db.dto.remarks.shellquestion;
  */
 public class ResultsList {
     String id;
-
     double score;
     String content;
 

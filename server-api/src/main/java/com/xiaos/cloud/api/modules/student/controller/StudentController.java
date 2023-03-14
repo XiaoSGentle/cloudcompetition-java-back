@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 @RestController
@@ -16,7 +18,7 @@ import java.util.List;
 public class StudentController {
     @Autowired
     CompetitionUsersService studentsService;
-    @ApiOperation(value = "获取学生信息")
+    @ApiOperation(value = "获取学生列表")
     @GetMapping("/getAllStudents")
     public ApiResult<List<CompetitionUsers>> getAllStudent(){
         return  ApiResult.ok(studentsService.list());
@@ -38,6 +40,12 @@ public class StudentController {
     public ApiResult<Boolean> deleteStudents(@RequestBody
                                                  @ApiParam(value = "学生ID列表")  List<String> ids){
         return ApiResult.ok(studentsService.removeByIds(ids));
+    }
+
+    @ApiOperation("批量导入学生")
+    @PostMapping("/addStudentsByExel")
+    public ApiResult<Boolean> addStudent( MultipartFile file){
+        return ApiResult.ok(studentsService.addStudentByExcel(file));
     }
 
 }

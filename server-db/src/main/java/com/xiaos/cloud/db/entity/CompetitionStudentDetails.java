@@ -40,6 +40,9 @@ public class CompetitionStudentDetails implements Serializable {
     @ApiModelProperty("本题获得的分数")
     private double thisScore;
 
+    @ApiModelProperty("正确答案")
+    private  String trueAnswer;
+
     @ApiModelProperty("最后一次学生提交的答案")
     private String submitAnswer;
 
@@ -51,6 +54,15 @@ public class CompetitionStudentDetails implements Serializable {
 
     @ApiModelProperty("最后一次提交的时间")
     private String lastTime;
+
+
+    public String getTrueAnswer() {
+        return trueAnswer;
+    }
+
+    public void setTrueAnswer(String trueAnswer) {
+        this.trueAnswer = trueAnswer;
+    }
 
     public Integer getId() {
         return id;

@@ -43,7 +43,7 @@ public class CompetitionUsers implements Serializable {
     private String name;
 
     @ApiModelProperty("学生班级")
-    private Integer class_name;
+    private Integer className;
 
     @ApiModelProperty("账号状态")
     private Integer active;
@@ -56,12 +56,12 @@ public class CompetitionUsers implements Serializable {
     @ApiModelProperty(value = "逻辑删除字段",hidden = true)
     private  Integer  isDel;
 
-    public Integer getClass_name() {
-        return class_name;
+    public Integer getClassName() {
+        return className;
     }
 
-    public void setClass_name(Integer class_name) {
-        this.class_name = class_name;
+    public void setClassName(Integer class_name) {
+        this.className = class_name;
     }
 
     public Integer getIsDel() {
@@ -139,14 +139,16 @@ public class CompetitionUsers implements Serializable {
     @Override
     public String toString() {
         return "CompetitionUsers{" +
-            "id = " + id +
-            ", uuid = " + uuid +
-            ", username = " + username +
-            ", password = " + password +
-            ", role = " + role +
-            ", name = " + name +
-            ", active = " + active +
-            ", addTime = " + addTime +
-        "}";
+                "id='" + id + '\'' +
+                ", uuid='" + uuid + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                ", className=" + className +
+                ", active=" + active +
+                ", addTime=" + addTime +
+                ", isDel=" + isDel +
+                '}';
     }
 }

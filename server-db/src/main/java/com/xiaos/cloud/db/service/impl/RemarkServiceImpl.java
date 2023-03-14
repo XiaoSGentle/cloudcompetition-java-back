@@ -32,8 +32,6 @@ public class RemarkServiceImpl implements RemarkService {
 
     @Autowired
     CompetitionStudentScoreMapper competitionStudentScoreMapper;
-
-
     @Autowired
     CompetitionStudentDetailsMapper competitionStudentDetailsMapper;
     @Autowired
@@ -43,15 +41,14 @@ public class RemarkServiceImpl implements RemarkService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public RemarkReturnVo remarkQuestion(QuestionGetParam questionGetParam) {
-//        获取当前考试类型
+//      获取当前考试类型
         Competition petition = competitionMapper.selectById(questionGetParam.getCompetitionId());
-
-//        设置返回值
+//      设置返回值
         RemarkReturnVo remarkReturnVo  = new RemarkReturnVo(questionGetParam.getCompetitionId(),questionGetParam.getStudentId(),questionGetParam.getQuestionId());
-//     定义本体获得的分数
+//      定义本体获得的分数
         double nowQuestionScore = 0;
 //      定义插入数据量的做题记录
-//        UserCompetitionDetails competitionStudentDetails = null;
+//      UserCompetitionDetails competitionStudentDetails = null;
 //      查询是否有提交题目的记录,没有则新建
 
         CompetitionStudentDetails competitionStudentDetails = competitionStudentDetailsMapper.getDetailsByUserUuidAndCompetitionUuidAndQuestionUuid(questionGetParam.getStudentId(), questionGetParam.getCompetitionId(), questionGetParam.getQuestionId());
@@ -75,10 +72,14 @@ public class RemarkServiceImpl implements RemarkService {
 //        减去上次做题分数
         competitionStudentScoreMapper.addScoreByStudentIdAndCompetitionId(questionGetParam.getStudentId(), questionGetParam.getCompetitionId(), -competitionStudentDetails.getThisScore());
 //        先获取题目
+
         CompetitionQuestions questionSelectInSql = competitionQuestionsMapper.selectById(questionGetParam.getQuestionId());
-//        先判断是不是单选题
+
+        competitionStudentDetails.setTrueAnswer(questionSelectInSql.getAnswer());
+        //        先判断是不是单选题
         if(questionSelectInSql.getType()==1||questionSelectInSql.getType()==2){
 //            判断答案对不对?加分：不加
+
             if (questionGetParam.getStudentAnswer().equals(questionSelectInSql.getAnswer())) {
                 nowQuestionScore = questionSelectInSql.getScore();
             } else if(questionSelectInSql.getType() == 2){
@@ -88,8 +89,6 @@ public class RemarkServiceImpl implements RemarkService {
                 }
             }
         }else {
-
-
             PostRemarksParam remarksParam = new PostRemarksParam(questionGetParam.getUsername(), questionGetParam.getPassword(), questionGetParam.getHosts());
 //            设置shell检测数据
             remarksParam.setData(JSONArray.parseArray(questionSelectInSql.getAnswer(),PostQuestionList.class) );
